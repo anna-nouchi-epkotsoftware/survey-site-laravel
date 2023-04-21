@@ -14,8 +14,12 @@
 
 <body>
 
-
-
+    <header class="base-header">
+        <h1 class="p-3">住宅ローンについてのアンケート</h1>
+    </header>
+    <!-- Content -->
+    @yield('content')
+    <!-- Content end -->
 
 
     <!-- bootstrapのjs -->
