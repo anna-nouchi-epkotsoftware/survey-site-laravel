@@ -1,3 +1,8 @@
-.base-header{
+body {
+    background-image: url("/images/embossed-diamond.png");
+    background-color: rgba(255,255,255,0.5);
+    background-blend-mode: overlay;
+}
+.base-header {
     background-color:  #CCCCCC;
 }
