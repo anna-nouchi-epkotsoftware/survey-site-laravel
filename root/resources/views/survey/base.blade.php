@@ -18,9 +18,10 @@
         <h1 class="p-3">住宅ローンについてのアンケート</h1>
     </header>
     <!-- Content -->
-    @yield('content')
+    <div class="container p-3">
+        @yield('content')
+    </div>
     <!-- Content end -->
-
 
     <!-- bootstrapのjs -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
