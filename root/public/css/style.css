@@ -6,3 +6,23 @@ body {
 .base-header {
     background-color:  #CCCCCC;
 }
+.question-num {
+    width: 23px;
+    text-align: center;
+    color: white;
+    border-radius: 11px;
+}
+.question-str {
+    width: 50px;
+    text-align: center;
+    color: white;
+    border-radius: 11px;
+}
+.btn-outline-primary {
+    color: #009999;
+    border-color: #009999;
+}
+.btn-outline-primary:hover {
+    background-color: #009999;
+    border-color: #009999;
+}
