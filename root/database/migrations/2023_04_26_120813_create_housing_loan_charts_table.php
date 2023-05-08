@@ -17,10 +17,10 @@ return new class extends Migration
             $table->id()->comment('ID');
             $table->string('name')->comment('名前');
             $table->string('usage_situation')->comment('利用状況');
-            $table->string('financial_institution')->comment('住宅金融公庫');
-            $table->string('financial_institution2')->comment('地方銀行');
-            $table->string('financial_institution3')->comment('みずほ銀行');
-            $table->string('financial_institution4')->comment('その他');
+            $table->string('financial_institution')->nullable()->comment('住宅金融公庫');
+            $table->string('financial_institution2')->nullable()->comment('地方銀行');
+            $table->string('financial_institution3')->nullable()->comment('みずほ銀行');
+            $table->string('financial_institution4')->nullable()->comment('その他');
             $table->softDeletes()->comment('削除日時'); // deleted_at
             $table->timestamp('created_at')->nullable()->comment('作成日時'); // created_at
             $table->timestamp('updated_at')->nullable()->comment('更新日時'); // updated_at
