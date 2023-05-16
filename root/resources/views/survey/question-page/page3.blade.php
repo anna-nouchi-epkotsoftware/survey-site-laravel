@@ -9,8 +9,20 @@
   <button type="button" class="position-absolute top-0 start-50 translate-middle btn btn-sm btn-success rounded-pill" style="width: 2rem; height:2rem;">2</button>
   <button type="button" class="position-absolute top-0 start-100 translate-middle btn btn-sm btn-secondary rounded-pill" style="width: 4rem; height:2rem;">完了</button>
 </div>
-<h1>質問は以上になります。ご協力の程ありがとうございました！！</h1>
-<a href="#" class="btn btn-secondary">戻る</a>
-<a href="#" class="btn btn-primary">回答する</a>
+<h1>お名前を記入してください。</h1>
 
+<div class="row my-4">
+  <form method="post" action="{{ route('housing-loan.question-page.page3.submitForm') }}">
+    @csrf
+
+    <div class="col">
+      <label for="name">お名前：</label>
+      <input type="text" name="name" id="name">
+    </div>
+
+    <input type="submit" value="回答する" class="btn btn-primary">
+  </form>
+
+</div>
+<a href="#" class="btn btn-secondary">戻る</a>
 @endsection
