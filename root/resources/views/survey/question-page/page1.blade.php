@@ -15,18 +15,26 @@
     <p class="fs-5 fw-bold pt-4">1,住宅ローンの利用有無</p>
     <p>あなたご自身、又は配偶者の方は、住宅ローンを借りていますか?</p>
     <div class="row my-4">
-        <div class="col">
-            <button type="button" class="btn btn-outline-primary w-100">借りている</button>
-        </div>
-        <div class="col">
-            <button type="button" class="btn btn-outline-primary w-100">借りていたが、もう返済が終わった</button>
-        </div>
-        <div class="col">
-            <button type="button" class="btn btn-outline-primary w-100">借りたことがない</button>
-        </div>
-    </div>
+        <form method="post" action="{{ route('housing-loan.question-page.page1.postPage1') }}">
+            @csrf
 
-    <div class="text-end"><a href="{{ route('page2') }}" class="btn btn-primary">次へ</a></div>
+            <div class="col">
+                <input type="radio" name="usage_situation" value="借りている" id="usage_situation">
+                <label for="usage_situation">借りている</label>
+            </div>
+            <div class="col">
+                <input type="radio" name="usage_situation" value="借りていたが、もう返済が終わった" id="usage_situation2">
+                <label for="usage_situation2">借りていたが、もう返済が終わった</label>
+            </div>
+            <div class="col">
+                <input type="radio" name="usage_situation" value="借りたことがない" id="usage_situation3">
+                <label for="usage_situation3">借りたことがない</label>
+            </div>
+
+            <input type="submit" value="次へ" class="btn btn-primary">
+        </form>
+
+    </div>
 </div>
 
 
