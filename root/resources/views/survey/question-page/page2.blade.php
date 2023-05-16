@@ -15,32 +15,32 @@
     <p>(住宅ローンのある方へ)住宅ローンの借入先はどちらの金融機関ですか?[複数回答]</p>
 
     <div class="row mt-2">
-        <div class="col">
-            <button type="button" class="btn btn-outline-primary w-100">住宅金融公庫</button>
-        </div>
-        <div class="col">
-            <button type="button" class="btn btn-outline-primary w-100">地方銀行</button>
-        </div>
+        <form method="post" action="{{ route('housing-loan.question-page.page2.postPage2') }}">
+            @csrf
+
+            <div class="col">
+                <input type="checkbox" name="financial_institution" value="住宅金融公庫" id="financial_institution">
+                <label for="financial_institution">住宅金融公庫</label>
+            </div>
+            <div class="col">
+                <input type="checkbox" name="financial_institution2" value="地方銀行" id="financial_institution2">
+                <label for="financial_institution2">地方銀行</label>
+            </div>
+            <div class="col">
+                <input type="checkbox" name="financial_institution3" value="みずほ銀行" id="financial_institution3">
+                <label for="financial_institution3">みずほ銀行</label>
+            </div>
+            <div class="col">
+                <input type="checkbox" name="financial_institution4" value="その他" id="financial_institution4">
+                <label for="financial_institution4">その他</label>
+            </div>
+
+            <input type="submit" value="次へ" class="btn btn-primary">
+        </form>
     </div>
-    <div class="row mt-2">
-        <div class="col">
-            <button type="button" class="btn btn-outline-primary w-100">みずほ銀行</button>
-        </div>
-        <div class="col">
-            <button type="button" class="btn btn-outline-primary w-100">三菱UFJ銀行</button>
-        </div>
-    </div>
-    <div class="row mt-2">
-        <div class="col">
-            <button type="button" class="btn btn-outline-primary w-100">りそな銀行</button>
-        </div>
-        <div class="col">
-            <button type="button" class="btn btn-outline-primary w-100">その他</button>
-        </div>
-    </div>
+
     <div class="row d-flex mt-4">
         <div class="col"><a href="#" class="btn btn-secondary">戻る</a></div>
-        <div class="col text-end"><a href="#" class="btn btn-primary">次へ</a></div>
     </div>
 
 </div>
