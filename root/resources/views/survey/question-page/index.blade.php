@@ -6,6 +6,6 @@
 <p class="fs-5 border-bottom border-secondary pb-5">住宅ローンに関する簡単なアンケートになります。<br />
     ご協力の程をお願いいたします。
 </p>
-<a href="#" class="btn btn-primary btn-lg">はじめる</a>
+<a href="{{ route('housing-loan.question-page.page1.showPage1') }}" class="btn btn-primary btn-lg">はじめる</a>
 
 @endsection
