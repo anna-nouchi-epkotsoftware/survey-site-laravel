@@ -105,10 +105,10 @@ class HousingLoanChartController extends Controller
     {
         //page2表示
         if (!$request->session()->has('form.page1')) {
-            return redirect()->route('housing-loan.question-page.page1.showPage1');
+            return redirect()->route('housing-loan.question-page.page1.showPage1')->with('message', 'どれかお選びください。');
         } elseif ($request->session()->get('form.page1') === '借りたことがない') {
             return view('survey.question-page.page3');
-        } else {
+        }    else {
             return view('survey.question-page.page2');
         }
     }
@@ -118,10 +118,20 @@ class HousingLoanChartController extends Controller
         $request->session()->put('form.page2', $request->all());
         return redirect()->route('housing-loan.question-page.page3.showPage3');
     }
-    public function showPage3()
+    public function showPage3(StoreHousingLoanChartRequest $request)
     {
         //page3表示
-        return view('survey.question-page.page3');
+        if($request->session()->get('form.page2')['financial_institution'] ?? ''){
+            return view('survey.question-page.page3');
+        }elseif($request->session()->get('form.page2')['financial_institution2'] ?? ''){
+            return view('survey.question-page.page3');
+        }elseif($request->session()->get('form.page2')['financial_institution3'] ?? ''){
+            return view('survey.question-page.page3');
+        }elseif($request->session()->get('form.page2')['financial_institution4'] ?? ''){
+            return view('survey.question-page.page3');
+        }else{
+            return redirect()->route('housing-loan.question-page.page2.showPage2')->with('message', 'どれかお選びください。');
+        }
     }
     public function submitForm(StoreHousingLoanChartRequest $request)
     {
