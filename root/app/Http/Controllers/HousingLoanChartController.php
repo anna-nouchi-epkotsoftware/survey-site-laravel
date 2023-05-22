@@ -20,6 +20,7 @@ class HousingLoanChartController extends Controller
             ->selectRaw('COUNT(usage_situation) as count')
             ->groupBy('usage_situation')
             ->get();
+
         //chart.js用にデータの配列作成
         $numberOfPeopleList = [];
         $usageSituationTitleList = [];
@@ -32,49 +33,37 @@ class HousingLoanChartController extends Controller
         foreach ($numberOfPeopleList as $value) {
             $AggregateResultsOfUsage[] = round(($value / $total) * 100, 1);
         }
+
+
         //住宅ローンの借入先のデータ取得
-        $financialInstitution = HousingLoanChart::select('financial_institution')
-            ->selectRaw('COUNT(financial_institution) as count')
-            ->groupBy('financial_institution')
-            ->where('financial_institution', '=', '住宅金融公庫')
-            ->get();
-        foreach ($financialInstitution as $financialInstitutionData) {
-            $financialInstitutionCount = $financialInstitutionData->count;
-            $financialInstitutionTitle = $financialInstitutionData->financial_institution;
+        $financialInstitutions = [
+            'financial_institution' => '住宅金融公庫',
+            'financial_institution2' => '地方銀行',
+            'financial_institution3' => 'みずほ銀行',
+            'financial_institution4' => 'その他'
+        ];
+
+        $financialInstitutionCounts = [];
+        $financialInstitutionList = [];
+
+        //DBからデータ取得
+        foreach ($financialInstitutions as $key => $financialInstitution) {
+            $financialInstitutionData = HousingLoanChart::select($key)
+                ->selectRaw('COUNT(' . $key . ') as count')
+                ->groupBy($key)
+                ->where($key, '=', $financialInstitution)
+                ->get()
+                ->first();
+            $financialInstitutionCounts[] = $financialInstitutionData['count'];
         }
-        $financialInstitution2 = HousingLoanChart::select('financial_institution2')
-            ->selectRaw('COUNT(financial_institution2) as count')
-            ->groupBy('financial_institution2')
-            ->where('financial_institution2', '=', '地方銀行')
-            ->get();
-        foreach ($financialInstitution2 as $financialInstitution2Data) {
-            $financialInstitution2Count = $financialInstitution2Data->count;
-            $financialInstitution2Title = $financialInstitution2Data->financial_institution2;
+
+        //集計結果の合計
+        $financialInstitutionTotal = array_sum($financialInstitutionCounts);
+
+        //chart.js用にデータの配列作成
+        foreach ($financialInstitutionCounts as $financialInstitutionCount) {
+            $financialInstitutionList[] = round(($financialInstitutionCount / $financialInstitutionTotal) * 100, 1);
         }
-        $financialInstitution3 = HousingLoanChart::select('financial_institution3')
-            ->selectRaw('COUNT(financial_institution3) as count')
-            ->groupBy('financial_institution3')
-            ->where('financial_institution3', '=', 'みずほ銀行')
-            ->get();
-        foreach ($financialInstitution3 as $financialInstitution3Data) {
-            $financialInstitution3Count = $financialInstitution3Data->count;
-            $financialInstitution3Title = $financialInstitution3Data->financial_institution3;
-        }
-        $financialInstitution4 = HousingLoanChart::select('financial_institution4')
-            ->selectRaw('COUNT(financial_institution4) as count')
-            ->groupBy('financial_institution4')
-            ->where('financial_institution4', '=', 'その他')
-            ->get();
-        foreach ($financialInstitution4 as $financialInstitution4Data) {
-            $financialInstitution4Count = $financialInstitution4Data->count;
-            $financialInstitution4Title = $financialInstitution4Data->financial_institution4;
-        }
-        $financialInstitutionTotal = array_sum([$financialInstitutionCount, $financialInstitution2Count, $financialInstitution3Count, $financialInstitution4Count]);
-        $financialInstitutionRatio = round(($financialInstitutionCount / $financialInstitutionTotal) * 100, 1);
-        $financialInstitution2Ratio = round(($financialInstitution2Count / $financialInstitutionTotal) * 100, 1);
-        $financialInstitution3Ratio = round(($financialInstitution3Count / $financialInstitutionTotal) * 100, 1);
-        $financialInstitution4Ratio = round(($financialInstitution4Count / $financialInstitutionTotal) * 100, 1);
-        $financialInstitutionList = [$financialInstitutionRatio, $financialInstitution2Ratio, $financialInstitution3Ratio, $financialInstitution4Ratio];
 
         return view('survey.index', [
             'AggregateResultsOfUsage' => $AggregateResultsOfUsage,
@@ -108,7 +97,7 @@ class HousingLoanChartController extends Controller
             return redirect()->route('housing-loan.question-page.page1.showPage1')->with('message', 'どれかお選びください。');
         } elseif ($request->session()->get('form.page1') === '借りたことがない') {
             return view('survey.question-page.page3');
-        }    else {
+        } else {
             return view('survey.question-page.page2');
         }
     }
@@ -121,15 +110,15 @@ class HousingLoanChartController extends Controller
     public function showPage3(StoreHousingLoanChartRequest $request)
     {
         //page3表示
-        if($request->session()->get('form.page2')['financial_institution'] ?? ''){
+        if ($request->session()->get('form.page2')['financial_institution'] ?? '') {
             return view('survey.question-page.page3');
-        }elseif($request->session()->get('form.page2')['financial_institution2'] ?? ''){
+        } elseif ($request->session()->get('form.page2')['financial_institution2'] ?? '') {
             return view('survey.question-page.page3');
-        }elseif($request->session()->get('form.page2')['financial_institution3'] ?? ''){
+        } elseif ($request->session()->get('form.page2')['financial_institution3'] ?? '') {
             return view('survey.question-page.page3');
-        }elseif($request->session()->get('form.page2')['financial_institution4'] ?? ''){
+        } elseif ($request->session()->get('form.page2')['financial_institution4'] ?? '') {
             return view('survey.question-page.page3');
-        }else{
+        } else {
             return redirect()->route('housing-loan.question-page.page2.showPage2')->with('message', 'どれかお選びください。');
         }
     }
