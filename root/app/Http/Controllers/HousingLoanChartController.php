@@ -110,13 +110,9 @@ class HousingLoanChartController extends Controller
     public function showPage3(StoreHousingLoanChartRequest $request)
     {
         //page3表示
-        if ($request->session()->get('form.page2')['financial_institution'] ?? '') {
-            return view('survey.question-page.page3');
-        } elseif ($request->session()->get('form.page2')['financial_institution2'] ?? '') {
-            return view('survey.question-page.page3');
-        } elseif ($request->session()->get('form.page2')['financial_institution3'] ?? '') {
-            return view('survey.question-page.page3');
-        } elseif ($request->session()->get('form.page2')['financial_institution4'] ?? '') {
+        if (
+            isset($request->session()->get('form.page2')['financial_institution']) || isset($request->session()->get('form.page2')['financial_institution2']) || isset($request->session()->get('form.page2')['financial_institution3']) || isset($request->session()->get('form.page2')['financial_institution4'])
+        ) {
             return view('survey.question-page.page3');
         } else {
             return redirect()->route('housing-loan.question-page.page2.showPage2')->with('message', 'どれかお選びください。');
