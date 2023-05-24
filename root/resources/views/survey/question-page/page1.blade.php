@@ -27,20 +27,24 @@
             </div>
             @endif
 
-            <div class="col">
-                <input type="radio" name="usage_situation" value="借りている" id="usage_situation" {{ session('form.page1')=="借りている" ? 'checked' : '' }}>
-                <label for="usage_situation">借りている</label>
-            </div>
-            <div class="col">
-                <input type="radio" name="usage_situation" value="借りていたが、もう返済が終わった" id="usage_situation2" {{ session('form.page1')=="借りていたが、もう返済が終わった" ? 'checked' : '' }}>
-                <label for="usage_situation2">借りていたが、もう返済が終わった</label>
-            </div>
-            <div class="col">
-                <input type="radio" name="usage_situation" value="借りたことがない" id="usage_situation3" {{ session('form.page1')=="借りたことがない" ? 'checked' : '' }}>
-                <label for="usage_situation3">借りたことがない</label>
+            <div class="container-fluid p-0 mt-2 mb-4">
+                <div class="row">
+                    <div class="col">
+                        <input type="radio" name="usage_situation" value="借りている" id="usage_situation" {{ session('form.page1')=="借りている" ? 'checked' : '' }}>
+                        <label for="usage_situation" class="btn btn-outline-info w-100">借りている</label>
+                    </div>
+                    <div class="col">
+                        <input type="radio" name="usage_situation" value="借りていたが、もう返済が終わった" id="usage_situation2" {{ session('form.page1')=="借りていたが、もう返済が終わった" ? 'checked' : '' }}>
+                        <label for="usage_situation2" class="btn btn-outline-info w-100">借りていたが、もう返済が終わった</label>
+                    </div>
+                    <div class="col">
+                        <input type="radio" name="usage_situation" value="借りたことがない" id="usage_situation3" {{ session('form.page1')=="借りたことがない" ? 'checked' : '' }}>
+                        <label for="usage_situation3" class="btn btn-outline-info w-100">借りたことがない</label>
+                    </div>
+                </div>
             </div>
 
-            <input type="submit" value="次へ" class="btn btn-primary">
+            <div class="text-end"><input type="submit" value="次へ" class="btn btn-primary"></div>
         </form>
     </div>
 </div>
