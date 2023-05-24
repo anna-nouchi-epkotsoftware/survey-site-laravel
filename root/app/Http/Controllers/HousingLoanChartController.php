@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreHousingLoanChartRequest;
 use App\Http\Requests\UpdateHousingLoanChartRequest;
 use App\Models\HousingLoanChart;
@@ -83,14 +84,14 @@ class HousingLoanChartController extends Controller
         //page1表示
         return view('survey.question-page.page1');
     }
-    public function postPage1(StoreHousingLoanChartRequest $request)
+    public function postPage1(Request $request)
     {
         //page1のformに入力された値をセッションに保存
         $request->session()->put('form.page1', $request->usage_situation);
         return redirect()->route('housing-loan.question-page.page2.showPage2');
     }
 
-    public function showPage2(StoreHousingLoanChartRequest $request)
+    public function showPage2(Request $request)
     {
         //page2表示
         if (!$request->session()->has('form.page1')) {
@@ -101,13 +102,13 @@ class HousingLoanChartController extends Controller
             return view('survey.question-page.page2');
         }
     }
-    public function postPage2(StoreHousingLoanChartRequest $request)
+    public function postPage2(Request $request)
     {
         //page2のformに入力された値をセッションに保存
         $request->session()->put('form.page2', $request->all());
         return redirect()->route('housing-loan.question-page.page3.showPage3');
     }
-    public function showPage3(StoreHousingLoanChartRequest $request)
+    public function showPage3(Request $request)
     {
         //page3表示
         if (
@@ -118,13 +119,13 @@ class HousingLoanChartController extends Controller
             return redirect()->route('housing-loan.question-page.page2.showPage2')->with('message', 'どれかお選びください。');
         }
     }
-    public function submitForm(StoreHousingLoanChartRequest $request)
+    public function submitForm(Request $request,StoreHousingLoanChartRequest $store_request)
     {
         //DBに保存
         $formPage2 = $request->session()->get('form.page2');
         $usage_situation = $request->session()->get('form.page1');
         HousingLoanChart::create([
-            'name' => $request->name,
+            'name' => $store_request->name,
             'usage_situation' => $usage_situation,
             'financial_institution' => $formPage2['financial_institution'] ?? '',
             'financial_institution2' => $formPage2['financial_institution2'] ?? '',
