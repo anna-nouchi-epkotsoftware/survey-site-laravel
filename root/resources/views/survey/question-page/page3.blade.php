@@ -12,27 +12,31 @@
 </div>
 <!-- ENDプログレスバー -->
 
-<h1>お名前を記入してください。</h1>
-
 <div class="row my-4">
 
   <form method="post" action="{{ route('housing-loan.question-page.page3.submitForm') }}">
     @csrf
 
-    <div class="col">
-      <label for="name">お名前：</label>
+    <div class="col mb-3">
+      <p class="fs-4 fw-bold">連絡先の入力をお願いいたします。</p>
+      <label for="name" class="fw-bold">氏名</label>
+      <span class="badge bg-danger me-4">必須</span>
       <input type="text" name="name" id="name">
     </div>
 
-    <input type="submit" value="回答する" class="btn btn-primary">
+
+    <div class="row">
+      <div class="col-auto me-auto">
+        <!-- 問1の回答によって、戻る時遷移する場所を切り替えている -->
+        @if(session('form.page1')=="借りたことがない")
+        <a href="{{ route('housing-loan.question-page.page1.showPage1') }}" class="btn btn-secondary">戻る</a>
+        @else
+        <a href="{{ route('housing-loan.question-page.page2.showPage2') }}" class="btn btn-secondary">戻る</a>
+        @endif
+      </div>
+      <div class="col-auto"><input type="submit" value="回答する" class="btn btn-primary"></div>
+    </div>
   </form>
 
 </div>
-<!-- 問1の回答によって、戻る時遷移する場所を切り替えている -->
-@if(session('form.page1')=="借りたことがない")
-<a href="{{ route('housing-loan.question-page.page1.showPage1') }}" class="btn btn-secondary">戻る</a>
-@else
-<a href="{{ route('housing-loan.question-page.page2.showPage2') }}" class="btn btn-secondary">戻る</a>
-@endif
-
 @endsection
