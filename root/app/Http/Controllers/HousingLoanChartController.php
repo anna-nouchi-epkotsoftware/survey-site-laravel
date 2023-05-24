@@ -25,9 +25,18 @@ class HousingLoanChartController extends Controller
         //chart.js用にデータの配列作成
         $numberOfPeopleList = [];
         $usageSituationTitleList = [];
+
         foreach ($usageSituationData as $usageSituation) {
             $numberOfPeopleList[] = $usageSituation->count;
-            $usageSituationTitleList[] = $usageSituation->usage_situation;
+            if ($usageSituation->usage_situation === 1) {
+                $usageSituationTitleList[] = '借りている';
+            }
+            if ($usageSituation->usage_situation === 2) {
+                $usageSituationTitleList[] = '借りていたが、もう返済が終わった';
+            }
+            if ($usageSituation->usage_situation === 3) {
+                $usageSituationTitleList[] = '借りたことがない';
+            }
         }
         $total = array_sum($numberOfPeopleList);
         $AggregateResultsOfUsage = [];
@@ -38,21 +47,21 @@ class HousingLoanChartController extends Controller
 
         //住宅ローンの借入先のデータ取得
         $financialInstitutions = [
-            'financial_institution' => '住宅金融公庫',
-            'financial_institution2' => '地方銀行',
-            'financial_institution3' => 'みずほ銀行',
-            'financial_institution4' => 'その他'
+            'financial_institution1',
+            'financial_institution2',
+            'financial_institution3',
+            'financial_institution4',
         ];
 
         $financialInstitutionCounts = [];
         $financialInstitutionList = [];
 
         //DBからデータ取得
-        foreach ($financialInstitutions as $key => $financialInstitution) {
-            $financialInstitutionData = HousingLoanChart::select($key)
-                ->selectRaw('COUNT(' . $key . ') as count')
-                ->groupBy($key)
-                ->where($key, '=', $financialInstitution)
+        foreach ($financialInstitutions as $financialInstitution) {
+            $financialInstitutionData = HousingLoanChart::select($financialInstitution)
+                ->selectRaw('COUNT(' . $financialInstitution . ') as count')
+                ->groupBy($financialInstitution)
+                ->where($financialInstitution, '=', true)
                 ->get()
                 ->first();
             $financialInstitutionCounts[] = $financialInstitutionData['count'];
@@ -119,7 +128,7 @@ class HousingLoanChartController extends Controller
             return redirect()->route('housing-loan.question-page.page2.showPage2')->with('message', 'どれかお選びください。');
         }
     }
-    public function submitForm(Request $request,StoreHousingLoanChartRequest $store_request)
+    public function submitForm(Request $request, StoreHousingLoanChartRequest $store_request)
     {
         //DBに保存
         $formPage2 = $request->session()->get('form.page2');
