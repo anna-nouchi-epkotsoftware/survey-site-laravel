@@ -105,7 +105,7 @@ class HousingLoanChartController extends Controller
         //page2表示
         if (!$request->session()->has('form.page1')) {
             return redirect()->route('housing-loan.question-page.page1.showPage1')->with('message', 'どれかお選びください。');
-        } elseif ($request->session()->get('form.page1') === '借りたことがない') {
+        } elseif ($request->session()->get('form.page1') == 3) {
             return view('survey.question-page.page3');
         } else {
             return view('survey.question-page.page2');
@@ -121,7 +121,7 @@ class HousingLoanChartController extends Controller
     {
         //page3表示
         if (
-            isset($request->session()->get('form.page2')['financial_institution']) || isset($request->session()->get('form.page2')['financial_institution2']) || isset($request->session()->get('form.page2')['financial_institution3']) || isset($request->session()->get('form.page2')['financial_institution4'])
+            isset($request->session()->get('form.page2')['financial_institution1']) || isset($request->session()->get('form.page2')['financial_institution2']) || isset($request->session()->get('form.page2')['financial_institution3']) || isset($request->session()->get('form.page2')['financial_institution4'])
         ) {
             return view('survey.question-page.page3');
         } else {
@@ -136,10 +136,10 @@ class HousingLoanChartController extends Controller
         HousingLoanChart::create([
             'name' => $store_request->name,
             'usage_situation' => $usage_situation,
-            'financial_institution' => $formPage2['financial_institution'] ?? '',
-            'financial_institution2' => $formPage2['financial_institution2'] ?? '',
-            'financial_institution3' => $formPage2['financial_institution3'] ?? '',
-            'financial_institution4' => $formPage2['financial_institution4'] ?? '',
+            'financial_institution1' => $formPage2['financial_institution1'] ?? 0,
+            'financial_institution2' => $formPage2['financial_institution2'] ?? 0,
+            'financial_institution3' => $formPage2['financial_institution3'] ?? 0,
+            'financial_institution4' => $formPage2['financial_institution4'] ?? 0,
         ]);
         $request->session()->forget('form');
         return redirect()->route('housing-loan.question-page.last.showLast');
