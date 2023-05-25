@@ -19,7 +19,7 @@ class HousingLoanChart extends Model
     protected $fillable = [
         'usage_situation',
         'name',
-        'financial_institution',
+        'financial_institution1',
         'financial_institution2',
         'financial_institution3',
         'financial_institution4',
