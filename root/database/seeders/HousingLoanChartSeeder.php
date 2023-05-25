@@ -24,7 +24,7 @@ class HousingLoanChartSeeder extends Seeder
             for ($i = 0; $i < 100; $i++) {
                 $data = [
                     'name' => fake()->name,
-                    'usage_situation' => '借りたことがない',
+                    'usage_situation' => 3,
                     'created_at' => now(),
                     'updated_at' => now(),
                 ];
@@ -35,8 +35,11 @@ class HousingLoanChartSeeder extends Seeder
                 if ($i % 2 === 0) {
                     $data = [
                         'name' => fake()->name,
-                        'usage_situation' => '借りている',
-                        'financial_institution' => '住宅金融公庫',
+                        'usage_situation' => 1,
+                        'financial_institution1' => true,
+                        'financial_institution2' => false,
+                        'financial_institution3' => false,
+                        'financial_institution4' => false,
                         'created_at' => now(),
                         'updated_at' => now(),
                     ];
@@ -44,9 +47,11 @@ class HousingLoanChartSeeder extends Seeder
                 } else {
                     $data = [
                         'name' => fake()->name,
-                        'usage_situation' => '借りている',
-                        'financial_institution' => '住宅金融公庫',
-                        'financial_institution2' => '地方銀行',
+                        'usage_situation' => 1,
+                        'financial_institution1' => true,
+                        'financial_institution2' => true,
+                        'financial_institution3' => false,
+                        'financial_institution4' => false,
                         'created_at' => now(),
                         'updated_at' => now(),
                     ];
@@ -57,8 +62,11 @@ class HousingLoanChartSeeder extends Seeder
                 if ($i % 2 === 0) {
                     $data = [
                         'name' => fake()->name,
-                        'usage_situation' => '借りている',
-                        'financial_institution3' => 'みずほ銀行',
+                        'usage_situation' => 1,
+                        'financial_institution1' => false,
+                        'financial_institution2' => false,
+                        'financial_institution3' => true,
+                        'financial_institution4' => false,
                         'created_at' => now(),
                         'updated_at' => now(),
                     ];
@@ -66,8 +74,11 @@ class HousingLoanChartSeeder extends Seeder
                 } else {
                     $data = [
                         'name' => fake()->name,
-                        'usage_situation' => '借りている',
-                        'financial_institution4' => 'その他',
+                        'usage_situation' => 1,
+                        'financial_institution1' => false,
+                        'financial_institution2' => false,
+                        'financial_institution3' => false,
+                        'financial_institution4' => true,
                         'created_at' => now(),
                         'updated_at' => now(),
                     ];
@@ -79,8 +90,11 @@ class HousingLoanChartSeeder extends Seeder
                 if ($i % 2 === 0) {
                     $data = [
                         'name' => fake()->name,
-                        'usage_situation' => '借りていたが、もう返済が終わった',
-                        'financial_institution' => '住宅金融公庫',
+                        'usage_situation' => 2,
+                        'financial_institution1' => true,
+                        'financial_institution2' => false,
+                        'financial_institution3' => false,
+                        'financial_institution4' => false,
                         'created_at' => now(),
                         'updated_at' => now(),
                     ];
@@ -88,9 +102,11 @@ class HousingLoanChartSeeder extends Seeder
                 } else {
                     $data = [
                         'name' => fake()->name,
-                        'usage_situation' => '借りていたが、もう返済が終わった',
-                        'financial_institution' => '住宅金融公庫',
-                        'financial_institution2' => '地方銀行',
+                        'usage_situation' => 2,
+                        'financial_institution1' => true,
+                        'financial_institution2' => true,
+                        'financial_institution3' => false,
+                        'financial_institution4' => false,
                         'created_at' => now(),
                         'updated_at' => now(),
                     ];
