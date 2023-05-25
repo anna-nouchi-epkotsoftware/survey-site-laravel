@@ -19,7 +19,7 @@
 
     <div class="col mb-3">
       <p class="fs-4 fw-bold">連絡先の入力をお願いいたします。</p>
-      
+
       @error('name')
       <div class="alert alert-danger d-flex align-items-center" role="alert">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16">
@@ -40,7 +40,7 @@
     <div class="row">
       <div class="col-auto me-auto">
         <!-- 問1の回答によって、戻る時遷移する場所を切り替えている -->
-        @if(session('form.page1')=="借りたことがない")
+        @if(session('form.page1')==3)
         <a href="{{ route('housing-loan.question-page.page1.showPage1') }}" class="btn btn-secondary">戻る</a>
         @else
         <a href="{{ route('housing-loan.question-page.page2.showPage2') }}" class="btn btn-secondary">戻る</a>
