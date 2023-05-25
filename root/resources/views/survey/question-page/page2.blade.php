@@ -31,21 +31,21 @@
             <div class="container-fluid p-0 mt-2 mb-4">
                 <div class="row mb-2">
                     <div class="col">
-                        <input type="checkbox" name="financial_institution" value="住宅金融公庫" id="financial_institution" {{ isset(session('form.page2')['financial_institution']) ? 'checked' : ''}}>
-                        <label for="financial_institution" class="btn btn-outline-info w-100">住宅金融公庫</label>
+                        <input type="checkbox" name="financial_institution1" value="1" id="financial_institution1" {{ isset(session('form.page2')['financial_institution1']) ? 'checked' : ''}}>
+                        <label for="financial_institution1" class="btn btn-outline-info w-100">住宅金融公庫</label>
                     </div>
                     <div class="col">
-                        <input type="checkbox" name="financial_institution2" value="地方銀行" id="financial_institution2" {{ isset(session('form.page2')['financial_institution2']) ? 'checked' : ''}}>
+                        <input type="checkbox" name="financial_institution2" value="1" id="financial_institution2" {{ isset(session('form.page2')['financial_institution2']) ? 'checked' : ''}}>
                         <label for="financial_institution2" class="btn btn-outline-info w-100">地方銀行</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
-                        <input type="checkbox" name="financial_institution3" value="みずほ銀行" id="financial_institution3" {{ isset(session('form.page2')['financial_institution3']) ? 'checked' : ''}}>
+                        <input type="checkbox" name="financial_institution3" value="1" id="financial_institution3" {{ isset(session('form.page2')['financial_institution3']) ? 'checked' : ''}}>
                         <label for="financial_institution3" class="btn btn-outline-info w-100">みずほ銀行</label>
                     </div>
                     <div class="col">
-                        <input type="checkbox" name="financial_institution4" value="その他" id="financial_institution4" {{ isset(session('form.page2')['financial_institution4']) ? 'checked' : ''}}>
+                        <input type="checkbox" name="financial_institution4" value="1" id="financial_institution4" {{ isset(session('form.page2')['financial_institution4']) ? 'checked' : ''}}>
                         <label for="financial_institution4" class="btn btn-outline-info w-100">その他</label>
                     </div>
                 </div>
