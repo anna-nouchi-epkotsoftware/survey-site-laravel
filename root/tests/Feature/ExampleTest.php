@@ -29,46 +29,30 @@ class ExampleTest extends TestCase
     public function nameProvider()
     {
         return [
-            ["借りている", "住宅金融公庫", "地方銀行","みずほ銀行","その他","anna"],
-            ["借りている", "", "","","","anna"],
-            ["借りている", "住宅金融公庫", "","","","anna"],
-            ["借りている", "", "地方銀行","","","anna"],
-            ["借りている", "", "","みずほ銀行","","anna"],
-            ["借りている", "", "","","その他","anna"],
-            ["借りている", "住宅金融公庫", "地方銀行","","","anna"],
-            ["借りている", "", "地方銀行","みずほ銀行","","anna"],
-            ["借りている", "", "","みずほ銀行","その他","anna"],
-            ["借りている", "住宅金融公庫", "","","その他","anna"],
-            ["借りている", "", "地方銀行","みずほ銀行","その他","anna"],
-            ["借りている", "住宅金融公庫", "","みずほ銀行","その他","anna"],
-            ["借りている", "住宅金融公庫", "地方銀行","","その他","anna"],
-            ["借りている", "住宅金融公庫", "地方銀行","みずほ銀行","","anna"],
-            ["借りていたが、もう返済が終わった", "住宅金融公庫", "地方銀行","みずほ銀行","その他","anna"],
-            ["借りていたが、もう返済が終わった", "", "","","","anna"],
-            ["借りていたが、もう返済が終わった", "住宅金融公庫", "","","","anna"],
-            ["借りていたが、もう返済が終わった", "", "地方銀行","","","anna"],
-            ["借りていたが、もう返済が終わった", "", "","みずほ銀行","","anna"],
-            ["借りていたが、もう返済が終わった", "", "","","その他","anna"],
-            ["借りていたが、もう返済が終わった", "住宅金融公庫", "地方銀行","","","anna"],
-            ["借りていたが、もう返済が終わった", "", "地方銀行","みずほ銀行","","anna"],
-            ["借りていたが、もう返済が終わった", "", "","みずほ銀行","その他","anna"],
-            ["借りていたが、もう返済が終わった", "住宅金融公庫", "","","その他","anna"],
-            ["借りていたが、もう返済が終わった", "", "地方銀行","みずほ銀行","その他","anna"],
-            ["借りていたが、もう返済が終わった", "住宅金融公庫", "","みずほ銀行","その他","anna"],
-            ["借りていたが、もう返済が終わった", "住宅金融公庫", "地方銀行","","その他","anna"],
-            ["借りていたが、もう返済が終わった", "住宅金融公庫", "地方銀行","みずほ銀行","","anna"],
-            ["借りたことがない", "", "","","","anna"],
+            [1, 1, 1, 1, 1, "anna"],
+            [1, 0, 0, 0, 0, "anna"],
+            [1, 1, 0, 0, 0, "anna"],
+            [1, 0, 1, 0, 0, "anna"],
+            [1, 0, 0, 1, 0, "anna"],
+            [1, 0, 0, 0, 1, "anna"],
+            [2, 1, 1, 1, 1, "anna"],
+            [2, 0, 0, 0, 0, "anna"],
+            [2, 1, 0, 0, 0, "anna"],
+            [2, 0, 1, 0, 0, "anna"],
+            [2, 0, 0, 1, 0, "anna"],
+            [2, 0, 0, 0, 1, "anna"],
+            [3, 0, 0, 0, 0, "anna"],
         ];
     }
     /**
      * @dataProvider nameProvider
      */
-    public function testSubmitForm($usage_situation,$financial_institution,$financial_institution2,$financial_institution3,$financial_institution4,$name)
+    public function testSubmitForm($usage_situation, $financial_institution1, $financial_institution2, $financial_institution3, $financial_institution4, $name)
     {
         // フォームのデータをセッションに保存
         $this->session(['form.page1' => $usage_situation]);
         $this->session(['form.page2' => [
-            'financial_institution' => $financial_institution,
+            'financial_institution1' => $financial_institution1,
             'financial_institution2' => $financial_institution2,
             'financial_institution3' => $financial_institution3,
             'financial_institution4' => $financial_institution4,
@@ -88,7 +72,7 @@ class ExampleTest extends TestCase
         $this->assertDatabaseHas('housing_loan_charts', [
             'name' => $name,
             'usage_situation' => $usage_situation,
-            'financial_institution' => $financial_institution,
+            'financial_institution1' => $financial_institution1,
             'financial_institution2' => $financial_institution2,
             'financial_institution3' => $financial_institution3,
             'financial_institution4' => $financial_institution4,
