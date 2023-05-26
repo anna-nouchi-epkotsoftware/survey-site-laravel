@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreHousingLoanChartRequest;
-use App\Http\Requests\UpdateHousingLoanChartRequest;
+use App\Http\Requests\FormPage1SessionRequest;
 use App\Models\HousingLoanChart;
+
 
 class HousingLoanChartController extends Controller
 {
@@ -93,19 +94,18 @@ class HousingLoanChartController extends Controller
         //page1表示
         return view('survey.question-page.page1');
     }
-    public function postPage1(Request $request)
+    public function postPage1(FormPage1SessionRequest $request)
     {
+
         //page1のformに入力された値をセッションに保存
-        $request->session()->put('form.page1', $request->usage_situation);
+        $request->session()->put('form.page1', $request->input('usage_situation'));
         return redirect()->route('housing-loan.question-page.page2.showPage2');
     }
 
     public function showPage2(Request $request)
     {
         //page2表示
-        if (!$request->session()->has('form.page1')) {
-            return redirect()->route('housing-loan.question-page.page1.showPage1')->with('message', 'どれかお選びください。');
-        } elseif ($request->session()->get('form.page1') == 3) {
+        if ($request->session()->get('form.page1') == 3) {
             return view('survey.question-page.page3');
         } else {
             return view('survey.question-page.page2');
