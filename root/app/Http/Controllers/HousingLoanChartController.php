@@ -124,13 +124,14 @@ class HousingLoanChartController extends Controller
             return redirect()->route('housing-loan.question-page.page2.showPage2')->with('message', 'どれかお選びください。');
         }
     }
-    public function submitForm(Request $request, StoreHousingLoanChartRequest $store_request)
+    public function submitForm(StoreHousingLoanChartRequest $request)
     {
         //DBに保存
         $formPage2 = $request->session()->get('form.page2');
         $usage_situation = $request->session()->get('form.page1');
+
         HousingLoanChart::create([
-            'name' => $store_request->name,
+            'name' => $request->name,
             'usage_situation' => $usage_situation,
             'financial_institution1' => $formPage2['financial_institution1'] ?? 0,
             'financial_institution2' => $formPage2['financial_institution2'] ?? 0,
