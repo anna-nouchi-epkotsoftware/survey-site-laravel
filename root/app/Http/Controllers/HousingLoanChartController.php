@@ -27,18 +27,17 @@ class HousingLoanChartController extends Controller
         $numberOfPeopleList = [];
         $usageSituationTitleList = [];
 
+        $usageSituationNameTitleList = [
+            '1' => '借りている',
+            '2' => '借りていたが、もう返済が終わった',
+            '3' => '借りたことがない',
+        ];
+
         foreach ($usageSituationData as $usageSituation) {
             $numberOfPeopleList[] = $usageSituation->count;
-            if ($usageSituation->usage_situation === 1) {
-                $usageSituationTitleList[] = '借りている';
-            }
-            if ($usageSituation->usage_situation === 2) {
-                $usageSituationTitleList[] = '借りていたが、もう返済が終わった';
-            }
-            if ($usageSituation->usage_situation === 3) {
-                $usageSituationTitleList[] = '借りたことがない';
-            }
+            $usageSituationTitleList[] = $usageSituationNameTitleList[$usageSituation->usage_situation];
         }
+
         $total = array_sum($numberOfPeopleList);
         $aggregateResultsOfUsage = [];
         foreach ($numberOfPeopleList as $value) {
