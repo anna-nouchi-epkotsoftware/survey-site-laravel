@@ -113,7 +113,8 @@ class HousingLoanChartController extends Controller
     public function postPage2(Request $request)
     {
         //page2のformに入力された値をセッションに保存
-        $request->session()->put('form.page2', $request->all());
+        $page2FormData = $request->only(['financial_institution1', 'financial_institution2', 'financial_institution3', 'financial_institution4']);
+        $request->session()->put('form.page2', $page2FormData);
         return redirect()->route('housing-loan.question-page.page3.showPage3');
     }
     public function showPage3(Request $request)
