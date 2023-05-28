@@ -40,6 +40,7 @@ class HousingLoanChartController extends Controller
 
         $total = array_sum($numberOfPeopleList);
         $aggregateResultsOfUsage = [];
+
         foreach ($numberOfPeopleList as $value) {
             $aggregateResultsOfUsage[] = round(($value / $total) * 100, 1);
         }
@@ -58,13 +59,8 @@ class HousingLoanChartController extends Controller
 
         //DBからデータ取得
         foreach ($financialInstitutions as $financialInstitution) {
-            $financialInstitutionData = HousingLoanChart::select($financialInstitution)
-                ->selectRaw('COUNT(' . $financialInstitution . ') as count')
-                ->groupBy($financialInstitution)
-                ->where($financialInstitution, '=', true)
-                ->get()
-                ->first();
-            $financialInstitutionCounts[] = $financialInstitutionData['count'];
+            $financialInstitutionCount = HousingLoanChart::where($financialInstitution, 1)->count();
+            $financialInstitutionCounts[] = $financialInstitutionCount;
         }
 
         //集計結果の合計
