@@ -53,7 +53,7 @@
         //住宅ローン利用状況の円グラフ作成
         (() => {
             //データをJS用に変換
-            const data = {{Js::from($AggregateResultsOfUsage)}};
+            const data = {{Js::from($aggregateResultsOfUsage)}};
             const title = {{Js::from($usageSituationTitleList)}};
 
             //canvasの値取得

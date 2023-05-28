@@ -40,9 +40,9 @@ class HousingLoanChartController extends Controller
             }
         }
         $total = array_sum($numberOfPeopleList);
-        $AggregateResultsOfUsage = [];
+        $aggregateResultsOfUsage = [];
         foreach ($numberOfPeopleList as $value) {
-            $AggregateResultsOfUsage[] = round(($value / $total) * 100, 1);
+            $aggregateResultsOfUsage[] = round(($value / $total) * 100, 1);
         }
 
 
@@ -77,7 +77,7 @@ class HousingLoanChartController extends Controller
         }
 
         return view('survey.index', [
-            'AggregateResultsOfUsage' => $AggregateResultsOfUsage,
+            'aggregateResultsOfUsage' => $aggregateResultsOfUsage,
             'usageSituationTitleList' => $usageSituationTitleList,
             'financialInstitutionList' => $financialInstitutionList,
         ]);
