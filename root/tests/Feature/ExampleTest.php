@@ -13,7 +13,10 @@ class ExampleTest extends TestCase
 
         // テスト用のリクエストデータを作成
         $requestData = [
-            'テスト'
+            'financial_institution1' => 1,
+            'financial_institution2' => 1,
+            'financial_institution3' => 1,
+            'financial_institution4' => 1,
         ];
 
         // リクエストを送信
@@ -29,19 +32,14 @@ class ExampleTest extends TestCase
     public function nameProvider()
     {
         return [
-            [1, 1, 1, 1, 1, "anna"],
-            [1, 0, 0, 0, 0, "anna"],
-            [1, 1, 0, 0, 0, "anna"],
-            [1, 0, 1, 0, 0, "anna"],
-            [1, 0, 0, 1, 0, "anna"],
-            [1, 0, 0, 0, 1, "anna"],
-            [2, 1, 1, 1, 1, "anna"],
-            [2, 0, 0, 0, 0, "anna"],
-            [2, 1, 0, 0, 0, "anna"],
-            [2, 0, 1, 0, 0, "anna"],
-            [2, 0, 0, 1, 0, "anna"],
-            [2, 0, 0, 0, 1, "anna"],
-            [3, 0, 0, 0, 0, "anna"],
+            'Case01: inancial_institution All 1' => [3, 1, 1, 1, 1, "anna"],
+            'Case02: inancial_institution All 0' => [3, 0, 0, 0, 0, "anna"],
+            'Case03: inancial_institution1 = 1' => [3, 1, 0, 0, 0, "anna"],
+            'Case04: inancial_institution2 = 1' => [3, 0, 1, 0, 0, "anna"],
+            'Case05: inancial_institution3 = 1' => [3, 0, 0, 1, 0, "anna"],
+            'Case06: inancial_institution4 = 1' => [3, 0, 0, 0, 1, '日本語・記号・数値・あa1!?#'],
+            'Case07: usage_situation = 2, name min length' => [2, 0, 0, 0, 0, 'a'],
+            'Case08: usage_situation = 1,  name max length' => [1, 0, 0, 0, 0, str_repeat('a', 255)],
         ];
     }
     /**
