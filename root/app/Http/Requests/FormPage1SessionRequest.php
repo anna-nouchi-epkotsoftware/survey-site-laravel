@@ -25,7 +25,7 @@ class FormPage1SessionRequest extends FormRequest
     public function rules()
     {
         return [
-            'usage_situation' => ['integer',Rule::in([1, 2, 3])],
+            'usage_situation' => ['required','integer',Rule::in([1, 2, 3])],
         ];
     }
 
