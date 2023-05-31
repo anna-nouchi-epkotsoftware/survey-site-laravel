@@ -1,0 +1,53 @@
+body {
+    background-image: url("/images/embossed-diamond.png");
+    background-color: rgba(255, 255, 255, 0.5);
+    background-blend-mode: overlay;
+}
+
+.base-header {
+    background-color: #CCCCCC;
+}
+
+.question-num {
+    width: 23px;
+    text-align: center;
+    color: white;
+    border-radius: 11px;
+}
+
+.question-str {
+    width: 50px;
+    text-align: center;
+    color: white;
+    border-radius: 11px;
+}
+
+.btn-outline-info {
+    color: #20B2AA;
+    border-color: #20B2AA;
+}
+
+.btn-outline-info:hover {
+    background-color: #20B2AA;
+    border-color: #20B2AA;
+    color: white;
+}
+
+input[type="radio"] {
+    display: none;
+    /* ラジオボタンを非表示にする */
+}
+
+input[type="radio"]:checked+label {
+    background-color: #20B2AA;
+    border-color: #20B2AA;
+    color: white;
+}
+input[type="checkbox"] {
+    display: none;
+}
+input[type="checkbox"]:checked+label {
+    background-color: #20B2AA;
+    border-color: #20B2AA;
+    color: white;
+}
