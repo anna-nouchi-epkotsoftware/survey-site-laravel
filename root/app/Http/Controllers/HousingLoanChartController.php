@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreHousingLoanChartRequest;
 use App\Http\Requests\FormPage1SessionRequest;
+use App\Http\Requests\FormPage2SessionRequest;
 use App\Models\HousingLoanChart;
 
 
@@ -106,7 +107,7 @@ class HousingLoanChartController extends Controller
             return view('survey.question-page.page2');
         }
     }
-    public function postPage2(Request $request)
+    public function postPage2(FormPage2SessionRequest $request)
     {
         //page2のformに入力された値をセッションに保存
         $page2FormData = $request->only(['financial_institution1', 'financial_institution2', 'financial_institution3', 'financial_institution4']);
