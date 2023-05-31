@@ -122,7 +122,8 @@ class HousingLoanChartController extends Controller
         ) {
             return view('survey.question-page.page3');
         } else {
-            return redirect()->route('housing-loan.question-page.page2.showPage2')->with('message', 'どれかお選びください。');
+            //409エラーコードを返す
+            abort(409);
         }
     }
     public function submitForm(StoreHousingLoanChartRequest $request)
