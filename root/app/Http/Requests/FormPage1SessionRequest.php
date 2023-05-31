@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class FormPage1SessionRequest extends FormRequest
 {
@@ -24,7 +25,7 @@ class FormPage1SessionRequest extends FormRequest
     public function rules()
     {
         return [
-            'usage_situation' => 'required',
+            'usage_situation' => ['integer',Rule::in([1, 2, 3])],
         ];
     }
 
